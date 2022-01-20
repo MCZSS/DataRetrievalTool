@@ -4,6 +4,11 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 from time import sleep
 
+def save(names, file_name):
+	with open(file_name, "w") as file:
+		for name in names:
+			file.write("{}\n".format(name))
+
 driver = webdriver.Chrome("./chromedriver.exe")
 driver.get("https://ilearn.sfsu.edu/local/hub/index.php?wantsurl=https%3A%2F%2Filearn.sfsu.edu%2F")
 driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div/section/div/div/div[2]/div[1]/div/p[1]/a").click()
@@ -13,6 +18,7 @@ while True:
 	names = []
 	courses = str(input("Enter Done if you are done"))
 	if courses == "Done":
+		save(names, "names.txt")
 		break
 	driver.get(courses)
 	sleep(3)
@@ -54,9 +60,7 @@ while True:
 	except:
 		pass
 
-with open("names.txt", "w") as file:
-	for name in names:
-		file.write("{}\n".format(name))
+
 
 driver.close()
 
