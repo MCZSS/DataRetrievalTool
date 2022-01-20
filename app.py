@@ -35,7 +35,9 @@ while True:
 	#name_table = driver.find_element(By.XPATH, "/html/body/div[2]/div[2]/div/div/section[1]/div[2]/div[2]/div[3]/table/tbody")
 	for row in name_table.find_elements(By.TAG_NAME, "tr"):
 		name = row.find_elements(By.TAG_NAME, "a")[0]
-		names.append(name.text)
+		#names.append(name.text)
+		print(name.text)
+
 
 	try:
 		while True:
@@ -45,9 +47,10 @@ while True:
 			sleep(3)
 			name_table = driver.find_element(By.ID, "page-content").find_element(By.TAG_NAME, "tbody")
 			#name_table = driver.find_element(By.XPATH, "/html/body/div[2]/div[2]/div/div/section[1]/div[2]/div[2]/div[3]/table/tbody")
-			for row in name_table.find_elements(By.ID, "tr"):
+			for row in name_table.find_elements(By.TAG_NAME, "tr"):
 				name = row.find_elements(By.TAG_NAME, "a")[0]
-				names.append(name.text)
+				#names.append(name.text)
+				print(name.text)
 	except:
 		pass
 
